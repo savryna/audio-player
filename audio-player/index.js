@@ -2,30 +2,9 @@ const audio = document.querySelector('.audio-1');
 const play = document.querySelector('.btn-play');
 const range = document.querySelector('.range');
 const path = document.querySelector('.path')
+const current = document.querySelector('.current')
+const duration = document.querySelector('.remaining')
 
-// function playAudio() {
-//   if(pause.classList.contains('none')) {
-//     audio.play();
-//     pause.classList.remove('none');
-//     play.classList.add('none');
-//   } else if(play.classList.contains('none')) {
-//     audio.pause();
-//     pause.classList.add('none');
-//     play.classList.remove('none');
-//   }
-// }
-
-// function playAudio() {
-//   if(play.classList.contains('none')) {
-//     audio.pause();
-//     pause.classList.add('none');
-//     play.classList.remove('none');
-//   } else {
-//     audio.play();
-//     pause.classList.remove('none');
-//     play.classList.add('none');
-//   }
-// }
 
 function playAudio() {
   if (play.classList.contains('pause')) {
@@ -42,7 +21,21 @@ function playAudio() {
 play.addEventListener('click', playAudio)
 
 
-// play.addEventListener('click', () => {
-//   atr.setAttribute('d', 'M10 19C14.9706 19 19 14.9706 19 10C19 5.02944 14.9706 1 10 1C5.02944 1 1 5.02944 1 10C1 14.9706 5.02944 19 10 19ZM10 20C15.5228 20 20 15.5228 20 10C20 4.47715 15.5228 0 10 0C4.47715 0 0 4.47715 0 10C0 15.5228 4.47715 20 10 20ZM11 14V7H12V14H11ZM8 7V14H9V7H8Z')
-// })
+function progressTime() {
+  if(audio.play()) {
+    setInterval( () => {
+      range.value = audio.currentTime;
+      current.innerHTML = (audio.currentTime).toFixed(2) / 60;
+      duration.innerHTML = ((audio.duration - audio.currentTime) / 60).toFixed(2);
+      console.log(audio.currentTime)
+    },500);
+  }
+}
 
+range.onchange = function() {
+  audio.play();
+  audio.currentTime = range.value;
+  path.setAttribute('d', 'M10 19C14.9706 19 19 14.9706 19 10C19 5.02944 14.9706 1 10 1C5.02944 1 1 5.02944 1 10C1 14.9706 5.02944 19 10 19ZM10 20C15.5228 20 20 15.5228 20 10C20 4.47715 15.5228 0 10 0C4.47715 0 0 4.47715 0 10C0 15.5228 4.47715 20 10 20ZM11 14V7H12V14H11ZM8 7V14H9V7H8Z');
+}
+
+progressTime()
