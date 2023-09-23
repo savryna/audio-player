@@ -1,11 +1,15 @@
 const audio = document.querySelector('.audio-1');
+const audioSrc = document.querySelector('.audio-source');
 const play = document.querySelector('.btn-play');
 const range = document.querySelector('.range');
-const path = document.querySelector('.path')
-const current = document.querySelector('.current')
-const duration = document.querySelector('.remaining')
+const path = document.querySelector('.path');
+const current = document.querySelector('.current');
+const duration = document.querySelector('.remaining');
+const nextAudio = document.querySelector('.btn-right');
+const author = document.querySelector('.author-name');
+const songName = document.querySelector('.song-name');
 
-
+// play pause audio
 function playAudio() {
   if (play.classList.contains('pause')) {
     audio.play();
@@ -20,13 +24,13 @@ function playAudio() {
 
 play.addEventListener('click', playAudio)
 
-
+// progress
 function progressTime() {
   if(audio.play()) {
     setInterval( () => {
       range.value = audio.currentTime;
       current.innerHTML = (audio.currentTime).toFixed(2) / 60;
-      duration.innerHTML = ((audio.duration - audio.currentTime) / 60).toFixed(2);
+      duration.innerHTML = (((audio.duration).toFixed(2) - (audio.currentTime).toFixed(2)) / 60);
       console.log(audio.currentTime)
     },500);
   }
@@ -39,3 +43,19 @@ range.onchange = function() {
 }
 
 progressTime()
+
+nextAudio.addEventListener('click', () => {
+
+})
+
+// prev next song
+const songs = ['joji', 'shortparis'];
+let songsIndex = 0;
+
+function changeSong(song) {
+  author.innerHTML = song;
+  audioSrc.src = `audio${song}.mp3`;
+  
+}
+
+nextAudio.addEventListener('click', changeSong)
