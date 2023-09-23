@@ -13,6 +13,7 @@ const blockPlayer = document.querySelector('.container-audio')
 const album = document.querySelector('.container-audio-img')
 const background = document.querySelector('.background')
 
+const wrapper = document.querySelector('.wrapper')
 
 // 
 // play pause audio
@@ -74,18 +75,23 @@ progressTime()
 
 
 // prev next song
-const songsAuthor = ['Joji', 'Shortparis'];
-const songsName = ['Like you do', 'Страшно']
+const songsAuthor = ['Joji', 'Shortparis', `Jahman'sLove`]; //array with authors
+const songsName = ['Like you do', 'Страшно', 'Одна любовь'] //array with songs
+const videoSrc = [
+  'https://www.youtube.com/watch?v=mS-d5PEomYs',
+  'https://youtu.be/FUdteCBRX9c?si=kzdx7Gg8kxZBrF8j',
+  'https://youtu.be/tW0iCBZCM7I?si=5MNHI0zbSkKR3dYe',
+]
 let songsIndex = 0;
 
 function currentSong(song) {
-  author.innerHTML = song;
+  author.innerHTML = songsAuthor[songsIndex];
   songName.innerHTML = songsName[songsIndex];
   audio.src = `./assets/audio/${song}.mp3`;
   album.src = `./assets/img/${song}.jpg`;
   background.src = `./assets/img/${song}.jpg`;
-  // author.href = `https://www.youtube.com/watch?v=FUdteCBRX9c`;
-  // songName.href = `https://www.youtube.com/watch?v=FUdteCBRX9c`;
+  author.href = `${videoSrc[songsIndex]}`;
+  songName.href = `${videoSrc[songsIndex]}`;
   blockPlayer.setAttribute('data-shadow', `${song}`);
 }
 
@@ -136,3 +142,6 @@ if (currentSec < 10) {
 current.innerText = `${currentMin}:${currentSec}`;
 
 })
+
+
+

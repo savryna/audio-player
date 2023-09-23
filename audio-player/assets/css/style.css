@@ -50,8 +50,8 @@ a {
   justify-content: flex-end;
 
   margin: 0 auto;
-  width: 400px;
-  height: 500px;
+  width: 500px;
+  height: 600px;
   
   
   border-radius: 20px;
@@ -63,12 +63,16 @@ a {
   color: #aaa;
   padding: 20px;
 }
+
 [data-shadow = 'Joji']{
   box-shadow: 0px 0px 100px rgb(113 60 60);
 }
 
 [data-shadow = 'Shortparis']{
   box-shadow: 0px 0px 100px rgb(97, 97, 97);
+}
+[data-shadow= "Jahman'sLove"] {
+  box-shadow: 0px 0px 100px rgb(107 106 165);
 }
 
 .container-audio-img {
@@ -77,8 +81,8 @@ a {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: -1;
-  width: 400px;
-  height: 500px;
+  width: 500px;
+  height: 600px;
   object-fit: cover;
   border-radius: 20px;
 }
