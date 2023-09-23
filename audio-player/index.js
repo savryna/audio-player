@@ -12,6 +12,8 @@ const songName = document.querySelector('.song-name');
 const blockPlayer = document.querySelector('.container-audio')
 const album = document.querySelector('.container-audio-img')
 const background = document.querySelector('.background')
+const btnRepeat = document.querySelector('.btn-repeat')
+const pathRepeat = document.querySelector('.path-repeat')
 
 const wrapper = document.querySelector('.wrapper')
 
@@ -63,6 +65,17 @@ function progressTime() {
     }, 500);
   }
 }
+
+audio.addEventListener('timeupdate', (e) => {
+  const audioCurrent = e.target.currentTime;
+  let currentMin = Math.floor(audioCurrent / 60);
+let currentSec = Math.floor(audioCurrent % 60);
+if (currentSec < 10) {
+  currentSec = `0${currentSec}`;
+}
+current.innerText = `${currentMin}:${currentSec}`;
+
+})
 
 range.onchange = function () {
   audio.play();
@@ -120,28 +133,31 @@ nextBtn.addEventListener('click', nextSong)
 prevBtn.addEventListener('click', prevSong)
 
 // loop
-audio.addEventListener('ended', nextSong)
 
-
-// 
-// let audioCurrent = audio.currentTime;
-// let currentMin = Math.floor(audioCurrent / 60);
-// let currentSec = Math.floor(audioCurrent % 60);
-// if (currentSec < 10) {
-//   currentSec = `0${currentSec}`;
-// }
-// current.innerText = `${currentMin}:${currentSec}`;
-
-audio.addEventListener('timeupdate', (e) => {
-  const audioCurrent = e.target.currentTime;
-  let currentMin = Math.floor(audioCurrent / 60);
-let currentSec = Math.floor(audioCurrent % 60);
-if (currentSec < 10) {
-  currentSec = `0${currentSec}`;
-}
-current.innerText = `${currentMin}:${currentSec}`;
+btnRepeat.addEventListener('click', () => {
+  if(pathRepeat.classList.contains('path-repeat')){
+  audio.classList.add('repeat')
+  pathRepeat.classList.remove('path-repeat')
+} else  if(audio.classList.contains('repeat')) {
+  audio.classList.remove('repeat')
+  audio.classList.add('repeat_one')
+    pathRepeat.setAttribute('d', 'M8.75 0.5C4.19365 0.5 0.5 4.19365 0.5 8.75C0.5 13.3063 4.19365 17 8.75 17H10.5C15.9543 17 20.3888 12.6332 20.4979 7.20505L22.6464 9.35355L23.3536 8.64645L20.3536 5.64645L20 5.29289L19.6464 5.64645L16.6464 8.64645L17.3536 9.35355L19.4976 7.2095C19.3863 12.0833 15.4005 16 10.5 16H8.75C4.74594 16 1.5 12.7541 1.5 8.75C1.5 4.74594 4.74594 1.5 8.75 1.5H20V0.5H8.75ZM10.0528 3.77639L8.55279 6.77639L9.44721 7.22361L10 6.11803V12H11V4L10.0528 3.77639Z')
+  } else if(audio.classList.contains('repeat_one')) {
+    audio.classList.remove('repeat_one')
+    pathRepeat.classList.add('path-repeat')
+    pathRepeat.setAttribute('d', 'M0 8.25C0 3.69365 3.69365 0 8.25 0H19.5V1H8.25C4.24594 1 1 4.24594 1 8.25C1 12.2541 4.24594 15.5 8.25 15.5H10C14.9005 15.5 18.8863 11.5833 18.9976 6.7095L16.8536 8.85355L16.1464 8.14645L19.1464 5.14645L19.5 4.79289L19.8536 5.14645L22.8536 8.14645L22.1464 8.85355L19.9979 6.70505C19.8888 12.1332 15.4543 16.5 10 16.5H8.25C3.69365 16.5 0 12.8063 0 8.25Z')
+  }
 
 })
 
+audio.addEventListener('ended', () => {
+if(audio.classList.contains('repeat')) {
+  nextSong();
+} else if(audio.classList.contains('repeat_one')) {
+  playAudio();
+} else {
+  pauseAudio()
+}
+})
 
 

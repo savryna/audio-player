@@ -44,6 +44,7 @@ a {
 
 
 
+
 .container-audio {
   display: flex;
   flex-direction: column;
@@ -87,7 +88,17 @@ a {
   border-radius: 20px;
 }
 
+.menu {
+  text-align: right;
+  display: flex;
+  width: 70px;
+  height: 70px;
+  padding: 10px;
+  align-items: center;
+  justify-content: center;
+}
 .block-text {
+  margin-top: 300px;
   margin-bottom: 10px;
   display: flex;
   flex-direction: column;
@@ -157,4 +168,8 @@ a {
 
 .none {
   display: none;
+}
+
+.path-repeat {
+  fill: #aaa;
 }
