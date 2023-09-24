@@ -14,8 +14,9 @@ const album = document.querySelector('.container-audio-img')
 const background = document.querySelector('.background')
 const btnRepeat = document.querySelector('.btn-repeat')
 const pathRepeat = document.querySelector('.path-repeat')
+const btnRandom = document.querySelector('.btn-random')
+const pathRandom = document.querySelector('.path-random')
 
-const wrapper = document.querySelector('.wrapper')
 
 // 
 // play pause audio
@@ -88,16 +89,34 @@ progressTime()
 
 
 // prev next song
-const songsAuthor = ['Joji', 'Shortparis', `Jahman'sLove`]; //array with authors
-const songsName = ['Like you do', 'Страшно', 'Одна любовь'] //array with songs
+const songsAuthor = ['Joji', 'Shortparis', `Jahman'sLove`, 'Творожное озеро']; //array with authors
+const songsName = ['Like you do', 'Страшно', 'Одна любовь', 'Секрет'] //array with songs
 const videoSrc = [
   'https://www.youtube.com/watch?v=mS-d5PEomYs',
   'https://youtu.be/FUdteCBRX9c?si=kzdx7Gg8kxZBrF8j',
   'https://youtu.be/tW0iCBZCM7I?si=5MNHI0zbSkKR3dYe',
+  'https://www.youtube.com/watch?v=yzufzjg5Qho',
+
 ]
 let songsIndex = 0;
+let rand = 0;
+
+btnRandom.addEventListener('click', () => {
+  pathRandom.classList.toggle('path-random');
+  audio.classList.toggle('random')
+})
 
 function currentSong(song) {
+  if(audio.classList.contains('random')) {
+    author.innerHTML = songsAuthor[rand];
+    songName.innerHTML = songsName[rand];
+    audio.src = `./assets/audio/${songsAuthor[rand]}.mp3`;
+    album.src = `./assets/img/${songsAuthor[rand]}.jpg`;
+    background.src = `./assets/img/${songsAuthor[rand]}.jpg`;
+    author.href = `${videoSrc[rand]}`;
+    songName.href = `${videoSrc[rand]}`;
+    blockPlayer.setAttribute('data-shadow', `${rand}`);
+  } else {
   author.innerHTML = songsAuthor[songsIndex];
   songName.innerHTML = songsName[songsIndex];
   audio.src = `./assets/audio/${song}.mp3`;
@@ -105,18 +124,35 @@ function currentSong(song) {
   background.src = `./assets/img/${song}.jpg`;
   author.href = `${videoSrc[songsIndex]}`;
   songName.href = `${videoSrc[songsIndex]}`;
-  blockPlayer.setAttribute('data-shadow', `${song}`);
+  blockPlayer.setAttribute('data-shadow', `${songsIndex}`);
+}
 }
 
 currentSong(songsAuthor[songsIndex])
 
+// random song
+// 
+// function randomSong(song) {
+
+// }
+
+
+// randomSong(songsAuthor[rand])
+
 function nextSong() {
   songsIndex++;
+  rand = Math.floor(Math.random() * songsAuthor.length);
   if (songsIndex > songsAuthor.length - 1) {
     songsIndex = 0;
   }
   currentSong(songsAuthor[songsIndex])
   playAudio();
+  //  if (audio.classList.contains('random')) {
+   
+    // randomSong(songsAuthor[rand]);
+    // playAudio();
+  // }
+  
 }
 
 function prevSong() {

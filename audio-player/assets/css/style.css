@@ -65,17 +65,19 @@ a {
   padding: 20px;
 }
 
-[data-shadow = 'Joji']{
+[data-shadow = '0']{
   box-shadow: 0px 0px 100px rgb(113 60 60);
 }
 
-[data-shadow = 'Shortparis']{
+[data-shadow = '1']{
   box-shadow: 0px 0px 100px rgb(97, 97, 97);
 }
-[data-shadow= "Jahman'sLove"] {
+[data-shadow= '2'] {
   box-shadow: 0px 0px 100px rgb(107 106 165);
 }
-
+[data-shadow= "3"] {
+  box-shadow: 0px 0px 100px rgb(107 106 165);
+}
 .container-audio-img {
   position: absolute;
   top: 50%;
@@ -107,9 +109,7 @@ a {
   font-size: 1.5em;
   margin-bottom: 10px;
 }
-.song-name {
-  
-}
+
 .author-name:hover,
 .song-name:hover {
   color: rgb(223, 223, 223);
@@ -139,7 +139,7 @@ a {
   -webkit-appearance: none;
   border-radius: 2px;
   background-color: #aaa;
-  box-shadow: 10px 10px 12px rgb(0, 0, 0);
+  box-shadow: 0px 7px 20px rgb(129 129 129);
 }
 
 .range::-webkit-slider-thumb {
@@ -171,5 +171,9 @@ a {
 }
 
 .path-repeat {
+  fill: #aaa;
+}
+
+.path-random {
   fill: #aaa;
 }
