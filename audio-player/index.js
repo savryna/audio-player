@@ -197,3 +197,17 @@ if(audio.classList.contains('repeat')) {
 })
 
 
+// playlist 
+
+const modal = document.querySelector('.modal__playlist');
+const openBtn = document.querySelector('.menu');
+const closeBtn = document.querySelector('.btn__close');
+const wrapperModal = document.querySelector('.wrapper__modal')
+
+function modalControl() {
+  modal.classList.toggle('none')
+
+}
+openBtn.addEventListener('click', modalControl)
+closeBtn.addEventListener('click', modalControl)
+wrapperModal.addEventListener('click', modalControl)
