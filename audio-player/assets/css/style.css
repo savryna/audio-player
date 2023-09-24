@@ -78,6 +78,7 @@ a {
 [data-shadow= "3"] {
   box-shadow: 0px 0px 100px rgb(107 106 165);
 }
+
 .container-audio-img {
   position: absolute;
   top: 50%;
@@ -176,4 +177,12 @@ a {
 
 .path-random {
   fill: #aaa;
+}
+
+.wrapper__modal {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  z-index: 2;
+  background-color: #000;
 }
