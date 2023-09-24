@@ -238,6 +238,7 @@ ul {
   position: relative;
   z-index: 3;
   transition: .8s;
+  cursor: pointer;
 }
 
 .song__item:hover {
